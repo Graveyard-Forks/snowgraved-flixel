@@ -124,14 +124,14 @@ class FlxG
 	 * More updates usually means better collisions and smoother motion.
 	 * NOTE: This is NOT the same thing as the draw framerate!
 	 */
-	public static var updateFramerate(default, set):Int;
+	public static var updateFramerate(default, set):Float;
 
 	/**
 	 * How many times you want your game to step each second. More steps usually means greater responsiveness,
 	 * but it can also slowdown your game if the stage can't keep up with the update routine.
 	 * NOTE: This is NOT the same thing as the update framerate!
 	 */
-	public static var drawFramerate(default, set):Int;
+	public static var drawFramerate(default, set):Float;
 
 	/**
 	 * Whether the game is running on a mobile device.
@@ -677,7 +677,7 @@ class FlxG
 	}
 	#end
 
-	static function set_updateFramerate(value:Int):Int
+	static function set_updateFramerate(value:Float):Float
 	{
 		if (value < drawFramerate)
 			log.warn("FlxG.framerate: the game's framerate shouldn't be smaller than the flash framerate," + " since it can stop your game from updating.");
@@ -693,12 +693,12 @@ class FlxG
 		return value;
 	}
 
-	static function set_drawFramerate(value:Int):Int
+	static function set_drawFramerate(value:Float):Float
 	{
 		if (value > updateFramerate)
 			log.warn("FlxG.drawFramerate: the update framerate shouldn't be smaller than the draw framerate," + " since it can stop your game from updating.");
 
-		drawFramerate = Std.int(Math.abs(value));
+		drawFramerate = Math.abs(value);
 
 		if (game.stage != null)
 			game.stage.frameRate = drawFramerate;
