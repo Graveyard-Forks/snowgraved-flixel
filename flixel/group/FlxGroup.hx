@@ -156,7 +156,7 @@ class FlxTypedGroup<T:FlxBasic> extends FlxBasic
 	{
 		for (basic in members)
 		{
-			if (basic != null && basic.exists && basic.active)
+			if (basic != null && basic.exists && basic.active && basic.visible)
 			{
 				basic.update(elapsed);
 			}
