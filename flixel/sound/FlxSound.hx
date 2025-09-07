@@ -253,7 +253,7 @@ class FlxSound extends FlxBasic
 		// Prevents double destroy
 		if (group != null)
 			group.remove(this);
-		
+
 		_transform = null;
 		exists = false;
 		active = false;
@@ -287,7 +287,7 @@ class FlxSound extends FlxBasic
 		if (!playing)
 			return;
 			
-		_time = _channel.position;
+		// _time = _channel.position;
 		
 		var radialMultiplier:Float = 1.0;
 		
@@ -607,7 +607,7 @@ class FlxSound extends FlxBasic
 		#if FLX_SOUND_SYSTEM
 		if (FlxG.sound.muted)
 			return 0.0;
-		
+
 		return FlxG.sound.applySoundCurve(FlxG.sound.volume * volume);
 		#else
 		return volume;
@@ -771,7 +771,7 @@ class FlxSound extends FlxBasic
 				_channel.__audioSource.pitch = v;
 			#end
 		}
-			
+
 		return _pitch = v;
 	}
 	#end
@@ -790,7 +790,7 @@ class FlxSound extends FlxBasic
 	
 	inline function get_time():Float
 	{
-		return _time;
+		return (playing) ? _channel.position : _time;
 	}
 	
 	function set_time(time:Float):Float
